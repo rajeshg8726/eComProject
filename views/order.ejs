@@ -1,0 +1,99 @@
+<%- include('./layout/head') %>
+
+	<body class="animsition">
+
+		<!-- Header -->
+		<%- include('./layout/header') %>
+
+			<!-- Cart -->
+			<%- include('./layout/cart') %>
+
+
+				<!-- breadcrumb -->
+				<!-- <div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Shoping Cart
+			</span>
+		</div>
+	</div>
+		 -->
+
+				
+				<div class="bg0 p-t-75 p-b-85" style="margin-top: 2rem;">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+								<div class="m-l-25 m-r--38 m-lr-0-xl">
+									<div class="wrap-table-shopping-cart">
+										
+										<table class="table-shopping-cart">
+											<tr class="table_head">
+												<th class="column-1">ID</th>
+												<th class="column-2">DATE</th>
+												<th class="column-3">STATUS</th>
+
+											</tr>
+											<% let total_price=0; if (orderlist && Array.isArray(orderlist) &&
+												orderlist.length> 0) {
+												orderlist.forEach(ct => {
+												%>
+	 											
+												<tr class="table_row" onclick="redirectToOrderDetails('<%= ct.orderID %>')"  style="cursor: pointer;;" >
+													
+														<td class="column-1">
+															<%= ct.orderID %>
+														</td>
+													
+														<td class="column-2">
+															<%= ct.createdAt %>
+														</td>
+													
+														<td class="column-3">Ordered</td>
+													
+
+
+												 <% }); } else { %>
+													<li class="header-cart-item">No Orders Till Now!</li>
+													<% } %>
+												</tr>
+												
+										</table>
+										
+									</div>
+
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<!-- Footer -->
+				<%- include('./layout/footer') %>
+
+
+					<!-- Back to top -->
+					<div class="btn-back-to-top" id="myBtn">
+						<span class="symbol-btn-back-to-top">
+							<i class="zmdi zmdi-chevron-up"></i>
+						</span>
+					</div>
+					<%- include('./layout/corejsfile') %>
+					<script>
+						function redirectToOrderDetails(orderID) {
+							// Redirect to a different page with the order ID
+							window.location.href = '/orderDetails?orderID=' + orderID;
+						}
+					</script>
+					

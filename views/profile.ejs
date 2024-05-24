@@ -1,0 +1,71 @@
+<%- include('./layout/head') %>
+
+<body class="animsition">
+	
+	<!-- Header -->
+	<%- include('./layout/header') %>
+
+	<!-- Cart -->
+	<%- include('./layout/cart') %>
+
+
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Your Profile
+		</h2>
+	</section>	
+
+	<!-- Content page -->
+	<section class="bg0 p-t-75 p-b-120">
+		<div class="container">
+			<div class="row p-b-148">
+				<div class="col-md-7 col-lg-8">
+					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Profile
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							<%= user.name %>
+						</p>
+						<p class="stext-113 cl6 p-b-26">
+							<%= user.email %>
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							<%= user.password %>
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							Any questions? Let us know in store at Ground floor, Chuakaghat,Varanasi, UP 221001 or call us on (+91) 87 26 141025
+						</p>
+					</div>
+				</div>
+
+				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+					<div class="how-bor1 ">
+						<div class="hov-img0">
+							<img src="images/about-01.jpg" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</section>	
+	
+		
+
+	<!-- Footer -->
+	<%- include('./layout/footer') %>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+	<%- include('./layout/corejsfile') %>

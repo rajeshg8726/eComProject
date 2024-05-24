@@ -1,0 +1,95 @@
+<%- include('./layout/head'); %>
+
+    <body class="g-sidenav-show  bg-gray-200">
+        <%- include('./layout/sidebar'); %>
+
+            <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+                <!-- Navbar -->
+                <%- include('./layout/navbar'); %>
+                    <!-- End Navbar -->
+
+
+                    <div class="container-fluid py-4">
+                       
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">All Products</h5>
+                                        <p class="text-sm mb-0">
+                                            List of all Product given below:
+                                        </p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-flush" id="products-list">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>DATE</th>
+                                                    <th>CUSTOMER</th>
+                                                    <th>Status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% orders.forEach(it => { %>
+                                                    
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="form-check my-auto">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="customCheck1" checked>
+                                                            </div>
+                                                           
+                                                            <h6 class="ms-3 my-auto"><%= it.orderID %></h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-sm"> <%= it.createdAt %>
+                                                    </td>
+                                                    <td class="text-sm"><%= 'Rajesh' %></td>
+                                                    <!-- <td class="text-sm">1</td> -->
+                                                   
+                                                    <td>
+                                                        <span class="badge badge-success badge-sm" style="color: green;">Peding</span>
+                                                    </td>
+                                                   
+                                                </tr>
+                                                <% }); %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </main>
+
+            <%- include('./layout/datatable'); %>
+
+            
+<script>
+    async function deleteProduct(productId) {
+      try {
+        const response = await fetch(`/delete_product/${productId}`, {
+          method: 'DELETE'
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to delete product');
+        }
+  
+        // Handle successful response (e.g., show success message)
+        alert('Product deleted successfully');
+  
+        // Redirect or perform any other action after deleting the product
+        window.location.reload(); // For example, reload the page
+  
+      } catch (error) {
+        console.error('Error deleting product:', error);
+        // Handle error (e.g., show error message)
+      }
+    }
+  </script>

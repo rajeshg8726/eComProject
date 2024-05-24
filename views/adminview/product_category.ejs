@@ -1,0 +1,71 @@
+<%- include('./layout/head'); %>
+
+  <body class="g-sidenav-show bg-gray-200">
+
+    <!-- Add sidebar here -->
+    <%- include('./layout/sidebar'); %>
+
+      <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <%- include('./layout/navbar'); %>
+
+          <!-- End Navbar -->
+          <!-- Display of success message -->
+          <% if (typeof successMessage !== 'undefined') { %>
+            <div class="alert alert-light" role="alert">
+                <%= successMessage %>
+            </div>
+        <% } %>
+        
+          <div class="container-fluid my-3 py-3">
+
+            <form role="form" class="text-start" method="post" action="/addProductCategory">
+              <div class="card mt-4" id="password">
+                <div class="card-header">
+                  <h5>Add Product Category</h5>
+                </div>
+
+                <div class="card-body pt-0">
+                  <!-- <div class="input-group input-group-outline">
+                  <label class="form-label">Current password</label>
+                  <input type="password" class="form-control">
+                </div> -->
+                  <div class="input-group input-group-outline my-4">
+                    <label class="form-label">Enter Product Category Name</label>
+                    <input type="name" name="name" id="name" class="form-control">
+                  </div>
+                  <!-- <div class="input-group input-group-outline">
+                  <label class="form-label">Confirm New password</label>
+                  <input type="password" class="form-control">
+                </div> -->
+                  <!-- <h5 class="mt-5">Password requirements</h5>
+                <p class="text-muted mb-2">
+                  Please follow this guide for a strong password:
+                </p> -->
+                  <!-- <ul class="text-muted ps-4 mb-0 float-start">
+                  <li>
+                    <span class="text-sm">One special characters</span>
+                  </li>
+                  <li>
+                    <span class="text-sm">Min 6 characters</span>
+                  </li>
+                  <li>
+                    <span class="text-sm">One number (2 are recommended)</span>
+                  </li>
+                  <li>
+                    <span class="text-sm">Change it often</span>
+                  </li>
+                </ul> -->
+                  <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">ADD</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+
+
+
+      </main>
+
+      <%- include('./layout/corefile'); %>

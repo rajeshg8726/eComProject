@@ -1,0 +1,119 @@
+<%- include('./layout/head'); %>
+
+    <body class="g-sidenav-show  bg-gray-200">
+        <%- include('./layout/sidebar'); %>
+
+            <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+                <!-- Navbar -->
+                <%- include('./layout/navbar'); %>
+                    <!-- End Navbar -->
+
+
+                    <div class="container-fluid py-4">
+                       
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">All Products</h5>
+                                        <p class="text-sm mb-0">
+                                            List of all Product given below:
+                                        </p>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-flush" id="products-list">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Category</th>
+                                                    <th>Price</th>
+                                                    <!-- <th>SKU</th> -->
+                                                    <th>Quantity</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% product.forEach(it => { %>
+                                                    
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="form-check my-auto">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="customCheck1" checked>
+                                                            </div>
+                                                            <img class="w-10 ms-3"
+                                                                src="/uploads/product_images/<%= it.image %>"
+                                                                alt="<%= it.product_name %>">
+                                                            <h6 class="ms-3 my-auto"><%= it.product_name %></h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-sm"> <% categories.forEach(cat => {
+                                                        if (it.category && it.category.toString() === cat._id.toString()) { %>
+                                                            <%= cat.name %> 
+                                                    <%    }
+                                                    }) %>
+                                                    </td>
+                                                    <td class="text-sm"><%= it.price %></td>
+                                                    <!-- <td class="text-sm">1</td> -->
+                                                    <td class="text-sm"><%= it.qty %></td>
+                                                    <td>
+                                                        <span class="badge badge-success badge-sm" style="color: green;">In Stock</span>
+                                                    </td>
+                                                    <td class="text-sm">
+                                                        <a href="/view_product/<%= it._id %>" data-bs-toggle="tooltip"
+                                                            data-bs-original-title="Preview product">
+                                                            <i
+                                                                class="material-icons text-secondary position-relative text-lg">visibility</i>
+                                                        </a>
+                                                        <a href="/edit_product/<%= it._id %>" class="mx-3" data-bs-toggle="tooltip"
+                                                            data-bs-original-title="Edit product">
+                                                            <i
+                                                                class="material-icons text-secondary position-relative text-lg">drive_file_rename_outline</i>
+                                                        </a>
+                                                        <button  onclick="deleteProduct('<%= it._id %>')" style="border: none; background: none;"
+                                                            data-bs-original-title="Delete product">
+                                                            <i
+                                                                class="material-icons text-secondary position-relative text-lg">delete</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </main>
+
+            <%- include('./layout/datatable'); %>
+
+            
+<script>
+    async function deleteProduct(productId) {
+      try {
+        const response = await fetch(`/delete_product/${productId}`, {
+          method: 'DELETE'
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to delete product');
+        }
+  
+        // Handle successful response (e.g., show success message)
+        alert('Product deleted successfully');
+  
+        // Redirect or perform any other action after deleting the product
+        window.location.reload(); // For example, reload the page
+  
+      } catch (error) {
+        console.error('Error deleting product:', error);
+        // Handle error (e.g., show error message)
+      }
+    }
+  </script>
