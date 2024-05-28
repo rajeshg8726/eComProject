@@ -18,7 +18,8 @@ const mongoose = require('mongoose');
 
 // connection to database
 mongoose
-  .connect('mongodb://127.0.0.1:27017/ecommerce')
+  // .connect('mongodb://127.0.0.1:27017/ecommerce') this is for the local environment
+  .connect('mongodb://mongo:IxelSDPszytAHcdVOHFeFihbRtnrYeCp@roundhouse.proxy.rlwy.net:16514/ecommerce')
   .then(()=> console.log("Mongodb is connected"))
   .catch((err) =>console.log("Mongo error", err));
 
