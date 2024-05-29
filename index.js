@@ -7,6 +7,7 @@ const ejs = require('ejs');
 const app = express();
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const MongoStore = require('connect-mongo');
 
 
 const bodyParser = require('body-parser');
@@ -25,10 +26,13 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // Database connection
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
-
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
+  
 
 // Configure session middleware
 app.use(
@@ -36,7 +40,9 @@ app.use(
     secret: 'rajeshgupta@hcl.com',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Change to true if using HTTPS
+    cookie: { secure: false },// Change to true if using HTTPS
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+
   })
 );
 
