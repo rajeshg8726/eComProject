@@ -69,6 +69,14 @@ app.use(bodyParser.json());
 // routes for client side use
 app.use('/', clientroutes);
 
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
