@@ -8,11 +8,11 @@ const app = express();
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 
 
 const bodyParser = require('body-parser');
 app.use(cookieParser());
-const mongoose = require('mongoose');
 
 
 
