@@ -62,12 +62,12 @@
                                                         <span class="badge badge-success badge-sm" style="color: green;">In Stock</span>
                                                     </td>
                                                     <td class="text-sm">
-                                                        <a href="/view_product/<%= it._id %>" data-bs-toggle="tooltip"
+                                                        <a href="/admin/view_product/<%= it._id %>" data-bs-toggle="tooltip"
                                                             data-bs-original-title="Preview product">
                                                             <i
                                                                 class="material-icons text-secondary position-relative text-lg">visibility</i>
                                                         </a>
-                                                        <a href="/edit_product/<%= it._id %>" class="mx-3" data-bs-toggle="tooltip"
+                                                        <a href="/admin/edit_product/<%= it._id %>" class="mx-3" data-bs-toggle="tooltip"
                                                             data-bs-original-title="Edit product">
                                                             <i
                                                                 class="material-icons text-secondary position-relative text-lg">drive_file_rename_outline</i>
@@ -97,7 +97,7 @@
 <script>
     async function deleteProduct(productId) {
       try {
-        const response = await fetch(`/delete_product/${productId}`, {
+        const response = await fetch(`/admin/delete_product/${productId}`, {
           method: 'DELETE'
         });
   

@@ -73,7 +73,7 @@
 <script>
     async function deleteProduct(productId) {
       try {
-        const response = await fetch(`/delete_product/${productId}`, {
+        const response = await fetch(`/admin/delete_product/${productId}`, {
           method: 'DELETE'
         });
   

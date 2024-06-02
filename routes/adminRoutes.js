@@ -8,25 +8,25 @@ const router = express.Router();
 
 
 // Route to serve images
-router.get('/product_images/:id', adminController.getProductImages );
+router.get('/admin/product_images/:id', adminController.getProductImages );
    
   
-router.get('/dashboard', adminController.load_admin_dashboard);
-router.get('/',adminController.load_signUp)
-router.get('/signup',adminController.load_signIn);
-router.post('/login', adminController.verify_user);
-router.post('/register',adminController.registerAdmin);
-router.get('/product_cat', adminController.load_product_cat);
-router.get('/product_add', adminController.load_product_add);
-router.post('/addProductCategory' , adminController.addProductCategory);
-router.get('/getAllCategories', adminController.getAllCategories);
-router.post('/save_product' , upload.single('image'), adminController.save_product);
-router.get('/product_list' , adminController.product_list);
-router.get('/edit_product/:id' , adminController.load_product_edit);
-router.delete('/delete_product/:id' , adminController.deleteProduct);
-router.put('/save_edit_product/:id', upload.single('image'), adminController.save_edit_product);
+router.get('/admin/dashboard', adminController.load_admin_dashboard);
+router.get('/admin',adminController.load_signUp)
+router.get('/admin/signup',adminController.load_signIn);
+router.post('/admin/login', adminController.verify_user);
+router.post('/admin/register',adminController.registerAdmin);
+router.get('/admin/product_cat', adminController.load_product_cat);
+router.get('/admin/product_add', adminController.load_product_add);
+router.post('/admin/addProductCategory' , adminController.addProductCategory);
+router.get('/admin/getAllCategories', adminController.getAllCategories);
+router.post('/admin/save_product' , upload.single('image'), adminController.save_product);
+router.get('/admin/product_list' , adminController.product_list);
+router.get('/admin/edit_product/:id' , adminController.load_product_edit);
+router.delete('/admin/delete_product/:id' , adminController.deleteProduct);
+router.put('/admin/save_edit_product/:id', upload.single('image'), adminController.save_edit_product);
 router.get('/demo' , adminController.load_demo_view);  
-router.get('/orderList', adminController.load_orderList);
+router.get('/admin/orderList', adminController.load_orderList);
 
 
 module.exports = router;

@@ -3,6 +3,8 @@ const admin_register = require('../models/adminModels/loginModels');
 const product_category = require('../models/adminModels/productModels');
 const Product = require('../models/adminModels/productDetailsModel');
 const Order = require('../models/orderModel');
+const mongoose = require('mongoose');
+
 
 const load_admin_dashboard = async (req, res) => {
     try {
@@ -66,7 +68,11 @@ const load_product_add = async (req, res) => {
 
 const load_product_edit = async (req, res) => {
     try {
-        const product = await Product.findById(req.params.id);
+        const id = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).send({ error: 'Invalid ID format' });
+          }
+        const product = await Product.findById(id);
         // console.log(product);
         const categories = await product_category.find();
         res.render('adminview/product_edit', { categories: categories , product: product });  }
@@ -168,7 +174,7 @@ const save_product = async (req, res) => {
 
          newProduct.save();
         // Redirect to another route within the same controller
-        res.redirect('/product_add?msg=Product save successfully');
+        res.redirect('/admin/product_add?msg=Product save successfully');
 
         // res.render('adminview/product_add', { successMessage: 'Product saved successfully' });
     } catch (error) {
@@ -208,7 +214,7 @@ const save_edit_product = async (req, res) => {
         // Redirect to another route within the same controller
        
     //    res.status(200).json({ message: 'Edited Product Done!'  , product : single_product});
-        res. redirect(200 , '/product_list');
+        res. redirect(200 , '/admin/product_list');
 
 
     } catch (error) {

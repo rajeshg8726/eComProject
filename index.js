@@ -62,7 +62,7 @@ app.use(bodyParser.json());
 
 
 // routes for the admin side use 
-// app.use('/', adminroutes);
+app.use('/', adminroutes);
 
 
 

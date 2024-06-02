@@ -83,7 +83,7 @@
           const formData = new FormData(event.target); // Create a FormData object from the form
       
           const productId = '<%= product._id %>'; // Get the product ID from your server-side code
-          const url = `/save_edit_product/<%= product._id %>`;
+          const url = `/admin/save_edit_product/<%= product._id %>`;
       
           try {
             const response = await fetch(url, {
@@ -97,7 +97,7 @@
       
             // Handle successful response (e.g., show success message)
             alert('Product Updated Successfull');
-            window.location.href ='/product_list';
+            window.location.href ='/admin/product_list';
           } catch (error) {
             console.error('Error updating product:', error);
             // Handle error (e.g., show error message)
